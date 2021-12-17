@@ -17,7 +17,7 @@ const forIdSchema = Joi.object({
     id: Joi.string().required()
 })
 
-export const validateCreate = (req, res, next) => {
+export const validateCreate = async (req, res, next) => {
     try {
         const value = await forPostSchema.validateAsync(req.body)
     } catch (err) {
@@ -26,7 +26,7 @@ export const validateCreate = (req, res, next) => {
     next()
 }
 
-export const validateUpdate = (req, res, next) => {
+export const validateUpdate = async (req, res, next) => {
     try {
         const value = await forUpdateSchema.validateAsync(req.body)
     } catch (err) {
@@ -39,7 +39,7 @@ export const validateUpdate = (req, res, next) => {
     next()
 }
 
-export const validateId = (req, res, next) => {
+export const validateId = async (req, res, next) => {
     try {
         const value = await forIdSchema.validateAsync(req.params)
     } catch (err) {
