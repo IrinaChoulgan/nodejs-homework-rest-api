@@ -57,7 +57,7 @@ export const validateUpdateFavorite = async (req, res, next) => {
         if (type === 'object.missing') {
             return res.status(400).json({message: err.message})
         }
-        return res.status(400).json({message: 'missing fields favorite'})
+        return res.status(400).json({message: 'Missing fields favorite'})
     }
     next()
 }
