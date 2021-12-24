@@ -1,6 +1,7 @@
 import Joi from 'joi'
-import { MAX_AGE, MIN_AGE } from '../../../lib/constants'
 import mongoose from 'mongoose';
+import { MAX_AGE, MIN_AGE } from '../../../lib/constants'
+
 const { Types } = mongoose;
 
 const forPostSchema = Joi.object({
@@ -22,10 +23,6 @@ const forUpdateSchema = Joi.object({
 const forPatchSchema = Joi.object({
     favorite: Joi.bool().required()
 })
-
-// const forIdSchema = Joi.object({
-//     id: Joi.string().required()
-// })
 
 export const validateCreate = async (req, res, next) => {
     try {
@@ -62,8 +59,8 @@ export const validateUpdateFavorite = async (req, res, next) => {
     next()
 }
 
-export const validateId = async (req, res, next) => {
-   if(!Types.ObjectId.isValid(req.params.id)){
+export const validateId = (req, res, next) => {
+   if(!Types.ObjectId.isValid(req.params.contactId)){
     return res.status(400).json({message: 'Invalid ObjectId'})
    }
     next()
