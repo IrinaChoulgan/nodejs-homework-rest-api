@@ -1,10 +1,22 @@
 import { Router } from 'express'
-import { validateCreate, validateUpdate, validateId, validateUpdateFavorite } from './validation'
-import {getContacts, getContactById, addContact, removeContact, updateContact} from '../../../controllers/contacts/index'
+import { 
+    validateCreate,
+     validateUpdate, 
+     validateId, 
+     validateUpdateFavorite, 
+     validateQuery,
+     } from './validation'
+import {
+    getContacts,
+     getContactById, 
+     addContact, 
+     removeContact, 
+     updateContact,
+    } from '../../../controllers/contacts/index'
 
 const router = new Router()
 
-router.get('/', getContacts)
+router.get('/', validateQuery, getContacts)
 
 router.get('/:id', validateId, getContactById)
 
