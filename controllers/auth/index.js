@@ -44,10 +44,26 @@ const registration = async (req, res, next) => {
     .json({ status: 'success', code: HttpCode.OK, data: {  } });
   }
 
-  // const current = async(req, res, next) => {
-  //   const currentUser = req.body
+  const current = async (req, res) => {
+    const { email, subscription } = req.user;
+    console.log(req.user);
+    if (!req.user.token || !req.user.id) {
+      return res.status(HttpCode.UNAUTHORIZED).json({
+        status: "error",
+        code: HttpCode.UNAUTHORIZED,
+        message: "Not authorized",
+      });
+    }
+    res.json({
+      status: "success",
+      code: HttpCode.OK,
+      data: {
+        user: {
+          email,
+          subscription,
+        },
+      },
+    });
+  };
 
-  //   return currentUser
-  // }
-
-  export {registration, login, logout}
+  export {registration, login, logout, current}
