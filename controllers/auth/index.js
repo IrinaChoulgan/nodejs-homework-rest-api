@@ -2,7 +2,7 @@ import { HttpCode } from '../../lib/constants';
 import AuthService from '../../service/auth';
 const authService = new AuthService()
 
-const registration = async (req, res, next) => {
+const signup = async (req, res, next) => {
     const { email } = req.body
     const isUserExist = await authService.isUserExist(email)
     if(isUserExist) {
@@ -45,7 +45,7 @@ const registration = async (req, res, next) => {
   }
 
   const current = async (req, res) => {
-    const { email, subscription } = req.user;
+    const { email } = req.user;
     console.log(req.user);
     if (!req.user.token || !req.user.id) {
       return res.status(HttpCode.UNAUTHORIZED).json({
@@ -60,10 +60,9 @@ const registration = async (req, res, next) => {
       data: {
         user: {
           email,
-          subscription,
         },
       },
     });
   };
 
-  export {registration, login, logout, current}
+  export {signup, login, logout, current}

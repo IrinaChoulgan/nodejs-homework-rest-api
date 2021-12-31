@@ -1,6 +1,6 @@
 import Joi from 'joi'
 import mongoose from 'mongoose';
-import { MAX_AGE, MIN_AGE } from '../../../lib/constants'
+import { MAX_AGE, MIN_AGE, HttpCode } from '../../../lib/constants';
 
 const { Types } = mongoose;
 
@@ -41,7 +41,7 @@ export const validateCreate = async (req, res, next) => {
     try {
        await forPostSchema.validateAsync(req.body)
     } catch (err) {
-        return res.status(400).json({message: err.message.replace(/"/g, '')})
+        return res.status(HttpCode.BAD_REQUEST).json({message: err.message.replace(/"/g, '')})
     }
     next()
 }
@@ -52,9 +52,9 @@ export const validateUpdate = async (req, res, next) => {
     } catch (err) {
         const [{ type }] = err.details
         if (type === 'object.missing') {
-            return res.status(400).json({message: err.message})
+            return res.status(HttpCode.BAD_REQUEST).json({message: err.message})
         }
-        return res.status(400).json({message: 'missing fields'})
+        return res.status(HttpCode.BAD_REQUEST).json({message: 'missing fields'})
     }
     next()
 }
@@ -65,16 +65,16 @@ export const validateUpdateFavorite = async (req, res, next) => {
     } catch (err) {
         const [{ type }] = err.details
         if (type === 'object.missing') {
-            return res.status(400).json({message: err.message})
+            return res.status(HttpCode.BAD_REQUEST).json({message: err.message})
         }
-        return res.status(400).json({message: 'Missing fields favorite'})
+        return res.status(HttpCode.BAD_REQUEST).json({message: 'Missing fields favorite'})
     }
     next()
 }
 
 export const validateId = (req, res, next) => {
    if(!Types.ObjectId.isValid(req.params.contactId)){
-    return res.status(400).json({message: 'Invalid ObjectId'})
+    return res.status(HttpCode.BAD_REQUEST).json({message: 'Invalid ObjectId'})
    }
     next()
 }

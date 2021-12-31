@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import {
-   registration,
+   signup,
    login,
    logout,
    current
@@ -9,7 +9,7 @@ import {
 import quard from '../../../middlewares/guard'
 const router = new Router()
 
-router.post('/registration', registration)
+router.post('/signup', signup)
 router.post('/login', login)
 router.post('/logout', quard, logout)
 router.get('/current', quard, current);
