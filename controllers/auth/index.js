@@ -44,4 +44,10 @@ const registration = async (req, res, next) => {
     .json({ status: 'success', code: HttpCode.OK, data: {  } });
   }
 
+  // const current = async(req, res, next) => {
+  //   const currentUser = req.body
+
+  //   return currentUser
+  // }
+
   export {registration, login, logout}
