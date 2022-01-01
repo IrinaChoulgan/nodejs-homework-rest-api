@@ -14,20 +14,20 @@ import {
      updateContact,
     } from '../../../controllers/contacts/index'
 
-import quard from '../../../middlewares/guard'
+import guard from '../../../middlewares/guard'
 
 const router = new Router()
 
-router.get('/', quard, validateQuery, getContacts)
+router.get('/', guard, validateQuery, getContacts)
 
-router.get('/:id', quard, validateId, getContactById)
+router.get('/:id', guard, validateId, getContactById)
 
-router.post('/', quard, validateCreate, addContact)
+router.post('/', guard, validateCreate, addContact)
 
-router.delete('/:id', quard, validateId,  removeContact)
+router.delete('/:id', guard, validateId,  removeContact)
 
-router.put('/:id', quard, validateId, validateUpdate, updateContact)
+router.put('/:id', guard, validateId, validateUpdate, updateContact)
 
-router.patch('/:id/favorite', quard, validateId, validateUpdateFavorite, updateContact)
+router.patch('/:id/favorite', guard, validateId, validateUpdateFavorite, updateContact)
 
 export default router

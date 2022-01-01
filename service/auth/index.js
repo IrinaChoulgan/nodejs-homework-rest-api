@@ -1,6 +1,6 @@
 import pkg from 'jsonwebtoken';
 import Users from "../../repository/users"
-const { Jwt } = pkg;
+// const { Jwt } = pkg;
 const SECRET_KEY = process.env.JWT_SECRET_KEY
 
 class AuthService {

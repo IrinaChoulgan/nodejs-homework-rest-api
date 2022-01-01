@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import {MIN_AGE, MAX_AGE} from '../lib/constants'
+
 const { Schema, SchemaTypes ,model } = mongoose;
 
 const contactSchema = new Schema({

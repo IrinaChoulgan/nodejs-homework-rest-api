@@ -11,12 +11,12 @@ import {
         validateLogin
         } from '../auth/validation'
     
-import quard from '../../../middlewares/guard'
+import guard from '../../../middlewares/guard'
 const router = new Router()
 
 router.post('/signup', validateSignup, signup)
 router.post('/login', validateLogin, login)
-router.post('/logout', quard, logout)
-router.get('/current', quard, current);
+router.post('/logout', guard, logout)
+router.get('/current', guard, current);
 
 export default router
