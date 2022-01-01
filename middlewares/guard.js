@@ -1,6 +1,7 @@
 import pkg from 'jsonwebtoken';
 import repositoryUsers from "../repository/users"
 import { HttpCode } from '../lib/constants';
+import { UNAUTHORIZED } from '../lib/messages';
 // const { Jwt } = pkg;
 const SECRET_KEY = process.env.JWT_SECRET_KEY
 
@@ -22,7 +23,7 @@ const guard = async (req, res, next) => {
     .json({ 
         status: 'error', 
         code: HttpCode.UNAUTHORIZED, 
-        message: 'Not authorized' });
+        message: UNAUTHORIZED.en });
     }
     const payload = pkg.decode(token)
     const user = await repositoryUsers.findById(payload.id)
@@ -32,7 +33,7 @@ const guard = async (req, res, next) => {
     .json({ 
         status: 'error', 
         code: HttpCode.UNAUTHORIZED, 
-        message: 'Not authorized' });
+        message: UNAUTHORIZED.en });
     }
     req.user = user
     next()

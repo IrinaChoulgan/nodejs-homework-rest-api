@@ -3,6 +3,7 @@ import logger from 'morgan'
 import cors from 'cors'
 import { HttpCode } from './lib/constants'
 import helmet from 'helmet'
+import { NOT_FOUND } from './lib/messages'
 
 import contactsRouter from './routes/api/contacts'
 import authRouter from './routes/api/auth'
@@ -27,7 +28,7 @@ app.use('/api/users', usersRouter)
 app.use((req, res) => {
   res
   .status(HttpCode.NOT_FOUND)
-  .json({ status: 'error', code: HttpCode.NOT_FOUND, message: 'Not found'})
+  .json({ status: 'error', code: HttpCode.NOT_FOUND, message: NOT_FOUND.en})
 })
 
 app.use((err, req, res, next) => {

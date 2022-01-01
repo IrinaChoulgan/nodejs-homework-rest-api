@@ -1,5 +1,6 @@
 import { HttpCode } from '../../lib/constants';
 import AuthService from '../../service/auth';
+import { CONFLICT, UNAUTHORIZED_LOGIN, UNAUTHORIZED } from '../../lib/messages';
 const authService = new AuthService()
 
 const signup = async (req, res, next) => {
@@ -11,7 +12,7 @@ const signup = async (req, res, next) => {
     .json({ 
         status: 'error', 
         code: HttpCode.CONFLICT, 
-        message: 'Email in use' });
+        message: CONFLICT.en });
     }
     const data = await authService.create(req.body)
     res
@@ -28,7 +29,7 @@ const signup = async (req, res, next) => {
     .json({ 
         status: 'error', 
         code: HttpCode.UNAUTHORIZED, 
-        message: 'Email or password is wrong' });
+        message: UNAUTHORIZED_LOGIN.en });
     }
     const token = authService.getToken(user)
     await authService.setToken(user.id, token)
@@ -51,7 +52,7 @@ const signup = async (req, res, next) => {
       return res.status(HttpCode.UNAUTHORIZED).json({
         status: "error",
         code: HttpCode.UNAUTHORIZED,
-        message: "Not authorized",
+        message: UNAUTHORIZED.en,
       });
     }
     res.json({

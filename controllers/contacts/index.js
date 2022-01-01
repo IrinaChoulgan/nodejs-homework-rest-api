@@ -1,5 +1,6 @@
 import repositoryContacts from '../../repository/contacts'
 import { HttpCode } from '../../lib/constants';
+import { NOT_FOUND } from '../../lib/messages';
 
 const getContacts = async (req, res, next) => {
     const { id: userId } = req.user
@@ -20,7 +21,7 @@ const getContacts = async (req, res, next) => {
     }
     res
     .status(HttpCode.NOT_FOUND)
-    .json({ status: 'error', code: HttpCode.NOT_FOUND, message: 'Not found'})
+    .json({ status: 'error', code: HttpCode.NOT_FOUND, message: NOT_FOUND.en})
   }
   
   const addContact = async (req, res, next) => {
@@ -42,7 +43,7 @@ const getContacts = async (req, res, next) => {
     }
     res
     .status(HttpCode.NOT_FOUND)
-    .json({ status: 'error', code: HttpCode.NOT_FOUND, message: 'Not found'})
+    .json({ status: 'error', code: HttpCode.NOT_FOUND, message: NOT_FOUND.en})
   }
   
   const updateContact = async (req, res, next) => {
@@ -56,7 +57,7 @@ const getContacts = async (req, res, next) => {
     }
     res
     .status(HttpCode.NOT_FOUND)
-    .json({ status: 'error', code: HttpCode.NOT_FOUND, message: 'Not found'})
+    .json({ status: 'error', code: HttpCode.NOT_FOUND, message: NOT_FOUND.en})
   }
 
   export {getContacts, getContactById, addContact, removeContact, updateContact}
