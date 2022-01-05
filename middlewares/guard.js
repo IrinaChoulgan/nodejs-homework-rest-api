@@ -2,7 +2,6 @@ import pkg from 'jsonwebtoken';
 import repositoryUsers from "../repository/users"
 import { HttpCode } from '../lib/constants';
 import { UNAUTHORIZED } from '../lib/messages';
-// const { Jwt } = pkg;
 const SECRET_KEY = process.env.JWT_SECRET_KEY
 
 const verifyToken = (token) => {
