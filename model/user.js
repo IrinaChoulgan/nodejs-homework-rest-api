@@ -42,15 +42,15 @@ const userSchema = new Schema(
       default: function(){
         return gravatar.url(this.email, {s: '250'}, true)
       },
-      verify: {
-        type: Boolean,
-        default: false,
-      },
-      verificationToken: {
-        type: String,
-        default: randomUUID(),
-      },
-    }
+    },
+    verify: {
+      type: Boolean,
+      default: false,
+    },
+    verificationToken: {
+      type: String,
+      default: randomUUID(),
+    },
   },
   {
     versionKey: false,
