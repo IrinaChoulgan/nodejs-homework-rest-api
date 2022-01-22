@@ -49,7 +49,7 @@ const userSchema = new Schema(
     },
     verificationToken: {
       type: String,
-      default: randomUUID(),
+      default: randomUUID,
     },
   },
   {
